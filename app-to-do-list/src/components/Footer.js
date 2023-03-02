@@ -22,9 +22,9 @@ function Footer(props) {
         <div className="d-flex justify-content-around">
             <div>{props.total} items</div>
             <div>
-                <button>All</button>
-                <button>Active</button>
-                <button>Completed</button>
+                <button onClick={() => props.SetView("All")}>All</button>
+                <button onClick={() => props.SetView("Active")}>Active</button>
+                <button onClick={() => props.SetView("Completed")}>Completed</button>
             </div>
             <button onClick={complete}>{text}</button>
         </div>

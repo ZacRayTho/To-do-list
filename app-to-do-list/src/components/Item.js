@@ -1,6 +1,7 @@
 function Item(props) {
     // console.log(props)
     //Gets props.Items array, returns an array without the item that matches prop.children of <li> that function was on
+    console.log("after delete", props.Items.length)
     function handleDelete() {
         // console.log(id);
         // console.log(props.Items)
@@ -13,8 +14,7 @@ function Item(props) {
         //return new Items array with item deleted
         props.SetItems([ ...props.Items ])
 
-
-        props.SetTotal(props.Items.length - 1)
+        props.SetTotal(props.Items.length)
 
         //deletes item in checked array at same ID
         props.checked.splice(props.id, 1);

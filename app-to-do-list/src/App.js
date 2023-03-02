@@ -15,39 +15,75 @@ function App() {
     const [checked, SetChecked] = useState([])
     console.log("checked", checked)
     console.log("items", items)
-
+    console.log(view)
     function handleClick() {
         let updatedItems = [...items, inputRef.current.value]
         SetItems(updatedItems)
         SetChecked([ ...checked, false])
         SetTotal(updatedItems.length)
     }
+    
 
-
+    function renderSwitch(param) {
+        switch(param) {
+          case "All":
+            return ( <>{items.map((item, index) => <Item 
+                SetItems={SetItems} 
+                Items={items}  
+                id={index} 
+                key={index} 
+                SetTotal={SetTotal}
+                checked={checked}
+                SetChecked={SetChecked}
+                >
+                {item}
+                </Item>)} </>)
+            
+          case "Active":
+            return ( <>{items.map((item, index) => <Item 
+                SetItems={SetItems} 
+                Items={items}  
+                id={index} 
+                key={index} 
+                SetTotal={SetTotal}
+                checked={checked}
+                SetChecked={SetChecked}
+                >
+                {item}
+                </Item>).filter((item, index) => checked[index] === false)} </>);
+            
+          case "Completed":
+            return ( <>{items.map((item, index) => <Item 
+                SetItems={SetItems} 
+                Items={items}  
+                id={index} 
+                key={index} 
+                SetTotal={SetTotal}
+                checked={checked}
+                SetChecked={SetChecked}
+                >
+                {item}
+                </Item>).filter((item, index) => checked[index] === true)} </>);
+            
+        }
+      }
 
     // const handleDelete = (id) => {
     //     setContacts(contacts.filter(item => item.id !== id));
     //   };
 
+
+    //Items in state array,so "view" conditionally renders based on checked array values
     return (
         <div className="text-center">
             <Header />
             <input type="text" placeholder="What to-do" ref={inputRef} />
             <button onClick={handleClick}>Submit</button>
             <ul>
-                {items.map((item, index) => <Item 
-                                            SetItems={SetItems} 
-                                            Items={items}  
-                                            id={index} 
-                                            key={index} 
-                                            SetTotal={SetTotal}
-                                            checked={checked}
-                                            SetChecked={SetChecked}
-                                            >
-                                            {item}
-                                            </Item>)}
+                {renderSwitch(view)}
+                
             </ul>
-            <Footer total={total} checked={checked} SetChecked={SetChecked} />
+            <Footer total={total} checked={checked} SetChecked={SetChecked} SetView={SetView}/>
         </div>)
 }
 
