@@ -1,7 +1,7 @@
 function Item(props) {
     // console.log(props)
     //Gets props.Items array, returns an array without the item that matches prop.children of <li> that function was on
-    console.log("after delete", props.Items.length)
+    // console.log("after delete", props.Items.length)
     function handleDelete() {
         // console.log(id);
         // console.log(props.Items)
@@ -35,7 +35,7 @@ function Item(props) {
     return (
         <li className="d-flex justify-content-around">
             <input type="checkbox" checked={props.checked[props.id]} id={props.id} onChange={handleChange}/>
-                <label htmlFor={props.id}>{props.children}</label>
+                <label className={`${props.checked[props.id] === true ? "text-decoration-line-through" : null}`} htmlFor={props.id}>{props.children}</label>
             <button onClick={() => handleDelete()}>Remove</button>
 
             {/* onClick={(e) => {this.clickMe(e, someParameter);}}

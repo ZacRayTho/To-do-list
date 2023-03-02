@@ -5,7 +5,6 @@ import Footer from "./components/Footer"
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 
-
 function App() {
     const inputRef = useRef(null);
     const [items, SetItems] = useState([]);
@@ -13,11 +12,12 @@ function App() {
     const [total, SetTotal] = useState("0")
     //checked can be array of true/false and use individual items id to grab correct item
     const [checked, SetChecked] = useState([])
-    console.log("checked", checked)
-    console.log("items", items)
-    console.log(view)
+    // console.log("checked", checked)
+    // console.log("items", items)
+    // console.log(view)
     function handleClick() {
         let updatedItems = [...items, inputRef.current.value]
+        inputRef.current.value = null;
         SetItems(updatedItems)
         SetChecked([ ...checked, false])
         SetTotal(updatedItems.length)
@@ -64,7 +64,8 @@ function App() {
                 >
                 {item}
                 </Item>).filter((item, index) => checked[index] === true)} </>);
-            
+           default:
+            return "¯\\_(ツ)_/¯" 
         }
       }
 
@@ -83,7 +84,7 @@ function App() {
                 {renderSwitch(view)}
                 
             </ul>
-            <Footer total={total} checked={checked} SetChecked={SetChecked} SetView={SetView}/>
+            <Footer total={total} checked={checked} SetChecked={SetChecked} items={items} SetItems={SetItems} SetView={SetView}/>
         </div>)
 }
 
