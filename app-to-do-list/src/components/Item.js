@@ -4,8 +4,21 @@ function Item(props) {
     function handleDelete() {
         // console.log(id);
         // console.log(props.Items)
-        props.SetItems(props.Items.filter(item => item !== props.children))
+        // splice("where to start", "how many items to delete")
+        // splice returns array of deleted items
+
+        //did have a filter function but props.Items only contains text,not ids so it would delete items with same text and mess with props.checked array
+        // deletes item at id 
+        props.Items.splice(props.id, 1)
+        //return new Items array with item deleted
+        props.SetItems([ ...props.Items ])
+
+
         props.SetTotal(props.Items.length - 1)
+
+        //deletes item in checked array at same ID
+        props.checked.splice(props.id, 1);
+        props.SetChecked([ ...props.checked ])
     }
     // console.log(props.checked)
     function handleChange() {
@@ -18,7 +31,7 @@ function Item(props) {
     }
 
     // console.log("before item return", props.checked[props.id])
-    
+
     return (
         <li className="d-flex justify-content-around">
             <input type="checkbox" checked={props.checked[props.id]} id={props.id} onChange={handleChange}/>
