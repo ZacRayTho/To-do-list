@@ -84,7 +84,7 @@ function App() {
                 {renderSwitch(view)}
                 
             </ul>
-            <Footer total={total} checked={checked} SetChecked={SetChecked} items={items} SetItems={SetItems} SetView={SetView}/>
+            <Footer total={total} checked={checked} SetChecked={SetChecked} items={items} SetItems={SetItems} SetView={SetView} SetTotal={SetTotal}/>
         </div>)
 }
 

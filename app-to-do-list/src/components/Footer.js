@@ -58,6 +58,7 @@ function Footer(props) {
             // console.log("before rerender", props.items, props.checked)
             props.SetItems([...props.items])
             props.SetChecked([...props.checked])
+            props.SetTotal(props.items.length)
         }
     }
 
